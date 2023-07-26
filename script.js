@@ -20,20 +20,36 @@ class LinkedList {
 
   // Walks through until it finds a node with no pointer - indicating the end of the chain- and returns that value
   tail() {
+    if(this.head == null) {return "No nodes attached to this linked list";}
     let node = this.head;
     while(node.pointer != null) {node = node.pointer;}
     return node;
   }
 
+  size() {
+    if (this.head != null) {
+      let counter = 1;
+      let node = this.head;
+      while (node.pointer != null) {
+        counter++;
+        node = node.pointer;
+      }
+      return counter;
+    } else {
+      return "No nodes attached to this linked list";
+    }
+  }
+
 
   toString() {
+    if (this.head == null) {
+      console.log("No nodes attached to this linked list");
+      return;
+    }
     let string = "";
     //setting currentNode to head sets the starting place for moving through the while walking through
     let currentNode = this.head;
     // set a nullcheck on linked list to ensure it has a start
-    if (currentNode == null) {
-      return "No nodes attached to this linked list";
-    }
     // While there is the next nodes pointer set, attach this nodes value to our string
     // this will NOT include the last node to the string
     while (currentNode.pointer != null) {
@@ -48,18 +64,21 @@ class LinkedList {
 
 const testList = new LinkedList();
 const testNode1 = new Node("test1");
-
 const testNode2 = new Node("test2");
 testNode1.pointer = testNode2;
-
 const testNode3 = new Node("test3");
 testNode2.pointer = testNode3;
-
 const testNode4 = new Node("test4");
 testNode3.pointer = testNode4;
 
-testList.prepend(testNode1);
+// const testNode5 = new Node("test4");
+// testNode4.pointer = testNode5;
+// const testNode6 = new Node("test6");
+// testNode5.pointer = testNode6;
+
+// testList.prepend(testNode1);
 testList.toString();
 console.log(testList.tail());
+console.log(testList.size());
 
 
