@@ -3,13 +3,6 @@ class Node {
     this.value = value;
     this.pointer = null;
   }
-
-  get pointer() {
-    return this.pointer;
-  }
-  set pointer(location) {
-    this.pointer = location;
-  }
 }
 
 class LinkedList {
@@ -36,4 +29,3 @@ const testNode1 = new Node('test');
 
 testList.addFirst(testNode1);
 console.log(testList);
-console.log("hello");
