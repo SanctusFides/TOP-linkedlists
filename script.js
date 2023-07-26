@@ -14,14 +14,21 @@ class LinkedList {
   head() {
     return this.head;
   }
-
   prepend(node) {
     this.head = node;
   }
 
+  // Walks through until it finds a node with no pointer - indicating the end of the chain- and returns that value
+  tail() {
+    let node = this.head;
+    while(node.pointer != null) {node = node.pointer;}
+    return node;
+  }
+
+
   toString() {
     let string = "";
-    //setting currentNode to head sets the starting place for moving through the while loop
+    //setting currentNode to head sets the starting place for moving through the while walking through
     let currentNode = this.head;
     // set a nullcheck on linked list to ensure it has a start
     if (currentNode == null) {
@@ -52,5 +59,7 @@ const testNode4 = new Node("test4");
 testNode3.pointer = testNode4;
 
 testList.prepend(testNode1);
-console.log(testList.toString());
+testList.toString();
+console.log(testList.tail());
+
 
