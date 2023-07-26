@@ -40,6 +40,23 @@ class LinkedList {
     }
   }
 
+  at(index) {
+    if(this.head == null) {return "No nodes attached to this linked list";}
+    let node = this.head;
+    for (let i = 1; i < index; i++) {
+      node = node.pointer;
+      if (node == null) {
+        return `No node at index of ${index}, last index value was ${i}` ;
+      }
+    }
+    return node;
+  }
+
+  // Pop normally removes and returns the final value of a list, but the instructions just say remove
+  // So I will be following the instructions and only removing it from the list
+  pop() {
+    let node = this.head;
+  }
 
   toString() {
     if (this.head == null) {
@@ -76,9 +93,9 @@ testNode3.pointer = testNode4;
 // const testNode6 = new Node("test6");
 // testNode5.pointer = testNode6;
 
-// testList.prepend(testNode1);
+testList.prepend(testNode1);
 testList.toString();
-console.log(testList.tail());
-console.log(testList.size());
-
+// console.log(testList.tail());
+// console.log(testList.size());
+console.log(testList.at(5));
 
