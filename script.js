@@ -8,28 +8,30 @@ class Node {
 class LinkedList {
 
   constructor() {
-    this.head = null;
+    this.listHead = null;
   }
 
-  head() {
-    return this.head;
-  }
+  
   prepend(node) {
-    this.head = node;
+    this.listHead = node;
+  }
+  
+  head() {
+    return this.listHead;
   }
 
   // Walks through until it finds a node with no pointer - indicating the end of the chain- and returns that value
   tail() {
-    if(this.head == null) {return "No nodes attached to this linked list";}
-    let node = this.head;
+    if(this.listHead == null) {return "No nodes attached to this linked list";}
+    let node = this.head();
     while(node.pointer != null) {node = node.pointer;}
     return node;
   }
 
   size() {
-    if (this.head != null) {
+    if (this.listHead != null) {
       let counter = 1;
-      let node = this.head;
+      let node = this.head();
       while (node.pointer != null) {
         counter++;
         node = node.pointer;
@@ -41,8 +43,8 @@ class LinkedList {
   }
 
   at(index) {
-    if(this.head == null) {return "No nodes attached to this linked list";}
-    let node = this.head;
+    if(this.listHead == null) {return "No nodes attached to this linked list";}
+    let node = this.head();
     for (let i = 1; i < index; i++) {
       node = node.pointer;
       if (node == null) {
@@ -52,11 +54,20 @@ class LinkedList {
     return node;
   }
 
+  append(newNode) {
+    if(this.listHead == null) {return "No nodes attached to this linked list";}
+    let node = this.head();
+    while (node.pointer != null) {
+      node = node.pointer;
+    }
+    node.pointer = newNode;
+  }
+
   // Pop normally removes and returns the final value of a list, but the instructions just say remove
   // So I will be following the instructions and only removing it from the list
   pop() {
-    if(this.head == null) {return "No nodes attached to this linked list";}
-    let node = this.head;
+    if(this.listHead == null) {return "No nodes attached to this linked list";}
+    let node = this.head();
     // prevNode keeps track of the last checked node so that if the end is found (pointer val is null) then set prevNode
     // pointer to null, thus disconnecting it from the linkedlist.
     let prevNode = null;
@@ -70,13 +81,13 @@ class LinkedList {
   }
 
   toString() {
-    if (this.head == null) {
+    if (this.listHead == null) {
       console.log("No nodes attached to this linked list");
       return;
     }
     let string = "";
     //setting currentNode to head sets the starting place for moving through the while walking through
-    let currentNode = this.head;
+    let currentNode = this.head();
     // set a nullcheck on linked list to ensure it has a start
     // While there is the next nodes pointer set, attach this nodes value to our string
     // this will NOT include the last node to the string
@@ -99,18 +110,21 @@ testNode2.pointer = testNode3;
 const testNode4 = new Node("test4");
 testNode3.pointer = testNode4;
 
-// const testNode5 = new Node("test4");
+const testNode5 = new Node("test5");
 // testNode4.pointer = testNode5;
-// const testNode6 = new Node("test6");
+const testNode6 = new Node("test6");
 // testNode5.pointer = testNode6;
 
 testList.prepend(testNode1);
+testList.append(testNode5);
+
 testList.toString();
+// console.log(testList.head());
 // console.log(testList.tail());
 // console.log(testList.size());
 // console.log(testList.at(4));
-testList.pop();
-testList.pop();
+// testList.pop();
+
 
 testList.toString();
 
