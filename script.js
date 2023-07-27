@@ -55,7 +55,18 @@ class LinkedList {
   // Pop normally removes and returns the final value of a list, but the instructions just say remove
   // So I will be following the instructions and only removing it from the list
   pop() {
+    if(this.head == null) {return "No nodes attached to this linked list";}
     let node = this.head;
+    // prevNode keeps track of the last checked node so that if the end is found (pointer val is null) then set prevNode
+    // pointer to null, thus disconnecting it from the linkedlist.
+    let prevNode = null;
+    while(node.pointer != null) {
+      prevNode = node;
+      node = node.pointer;
+      if (node.pointer == null) {
+        prevNode.pointer = null;
+      }
+    }    
   }
 
   toString() {
@@ -97,5 +108,9 @@ testList.prepend(testNode1);
 testList.toString();
 // console.log(testList.tail());
 // console.log(testList.size());
-console.log(testList.at(5));
+// console.log(testList.at(4));
+testList.pop();
+testList.pop();
+
+testList.toString();
 
