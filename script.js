@@ -19,6 +19,7 @@ class LinkedList {
   head() {
     return this.listHead;
   }
+  // This is used for checking if head is null - used in all functs to avoid copy/pasting code
   headCheck() {
     if (this.listHead == null) {return false}
     else {return true};
@@ -96,7 +97,20 @@ class LinkedList {
     if (this.tail().value == value) {return true;} else {return false;}
   }
 
-  find(value) {}
+  find(value) {
+    if (this.headCheck()) {
+      let counter = 1;
+      let node = this.head();
+      while (node.pointer != null) {
+        console.log(`${node.value} : ${value}`);
+        if (node.value == value) {return `${value} is found at index ${counter}`;}
+        counter++;
+        node = node.pointer;
+      }
+      if (this.tail().value == value) {return `${value} is found at index ${counter}`;} 
+      else {return `There is no node that contains the value "${value}"`;}
+    } else {return "No nodes attached to this linked list";}
+  }
 
   toString() {
     if (!this.headCheck()) {
@@ -136,13 +150,14 @@ const testNode5 = new Node("test5");
 testList.prepend(testNode1);
 testList.append(testNode5);
 
-testList.toString();
+// testList.toString();
 // console.log(testList.head());
 // console.log(testList.tail());
 // console.log(testList.size());
 // console.log(testList.at(4));
 // testList.pop();
 // console.log(testList.contains("test6"));
+// console.log(testList.find("test1"));
 
 testList.toString();
 
