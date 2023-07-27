@@ -80,6 +80,18 @@ class LinkedList {
     }    
   }
 
+  contains(value) {
+    if(this.listHead == null) {return "No nodes attached to this linked list";}
+    let node = this.head();
+    // This while loop will check everything up to the last value
+    while (node.pointer != null) {
+      if (node.value == value) {return true;}
+      node = node.pointer;
+    }
+    // If the value isn't found in the while loop above, this is if statement checks the final value of the chain
+    if (this.tail().value == value) {return true;} else {return false;}
+  }
+
   toString() {
     if (this.listHead == null) {
       console.log("No nodes attached to this linked list");
@@ -99,6 +111,7 @@ class LinkedList {
     string += `(${currentNode.value}) -> null`;
     console.log(string);
   }
+
 }
 
 const testList = new LinkedList();
@@ -112,7 +125,7 @@ testNode3.pointer = testNode4;
 
 const testNode5 = new Node("test5");
 // testNode4.pointer = testNode5;
-const testNode6 = new Node("test6");
+// const testNode6 = new Node("test6");
 // testNode5.pointer = testNode6;
 
 testList.prepend(testNode1);
@@ -124,7 +137,7 @@ testList.toString();
 // console.log(testList.size());
 // console.log(testList.at(4));
 // testList.pop();
+console.log(testList.contains("test6"));
 
-
-testList.toString();
+// testList.toString();
 
