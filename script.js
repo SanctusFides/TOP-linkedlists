@@ -19,17 +19,21 @@ class LinkedList {
   head() {
     return this.listHead;
   }
+  headCheck() {
+    if (this.listHead == null) {return false}
+    else {return true};
+  }
 
   // Walks through until it finds a node with no pointer - indicating the end of the chain- and returns that value
   tail() {
-    if(this.listHead == null) {return "No nodes attached to this linked list";}
+    if(!this.headCheck()) {return "No nodes attached to this linked list";}
     let node = this.head();
     while(node.pointer != null) {node = node.pointer;}
     return node;
   }
 
   size() {
-    if (this.listHead != null) {
+    if (this.headCheck()) {
       let counter = 1;
       let node = this.head();
       while (node.pointer != null) {
@@ -43,7 +47,7 @@ class LinkedList {
   }
 
   at(index) {
-    if(this.listHead == null) {return "No nodes attached to this linked list";}
+    if(!this.headCheck()) {return "No nodes attached to this linked list";}
     let node = this.head();
     for (let i = 1; i < index; i++) {
       node = node.pointer;
@@ -55,7 +59,7 @@ class LinkedList {
   }
 
   append(newNode) {
-    if(this.listHead == null) {return "No nodes attached to this linked list";}
+    if(!this.headCheck()) {return "No nodes attached to this linked list";}
     let node = this.head();
     while (node.pointer != null) {
       node = node.pointer;
@@ -66,7 +70,7 @@ class LinkedList {
   // Pop normally removes and returns the final value of a list, but the instructions just say remove
   // So I will be following the instructions and only removing it from the list
   pop() {
-    if(this.listHead == null) {return "No nodes attached to this linked list";}
+    if(!this.headCheck()) {return "No nodes attached to this linked list";}
     let node = this.head();
     // prevNode keeps track of the last checked node so that if the end is found (pointer val is null) then set prevNode
     // pointer to null, thus disconnecting it from the linkedlist.
@@ -81,7 +85,7 @@ class LinkedList {
   }
 
   contains(value) {
-    if(this.listHead == null) {return "No nodes attached to this linked list";}
+    if(!this.headCheck()) {return "No nodes attached to this linked list";}
     let node = this.head();
     // This while loop will check everything up to the last value
     while (node.pointer != null) {
@@ -92,8 +96,10 @@ class LinkedList {
     if (this.tail().value == value) {return true;} else {return false;}
   }
 
+  find(value) {}
+
   toString() {
-    if (this.listHead == null) {
+    if (!this.headCheck()) {
       console.log("No nodes attached to this linked list");
       return;
     }
@@ -111,7 +117,6 @@ class LinkedList {
     string += `(${currentNode.value}) -> null`;
     console.log(string);
   }
-
 }
 
 const testList = new LinkedList();
@@ -137,7 +142,7 @@ testList.toString();
 // console.log(testList.size());
 // console.log(testList.at(4));
 // testList.pop();
-console.log(testList.contains("test6"));
+// console.log(testList.contains("test6"));
 
-// testList.toString();
+testList.toString();
 
